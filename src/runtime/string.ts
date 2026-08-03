@@ -947,31 +947,37 @@ export const init = async () => {
         });
 
         klass.define_native_method("insert", async (self: RValue, args: RValue[]): Promise<RValue> => {
-            const self_data = self.get_data<string>();
             // raises unless two (required) positional args are given
             let [index_rval, other_rval] = await Args.scan("2", args);
-            other_rval = await Runtime.coerce_to_string(other);
-            const other = other_rval.get_data<string>();
 
-            index_rval = await Runtime.coerce_to_int(index_rval)
+            index_rval = await Runtime.coerce_to_int(index_rval);
+            other_rval = await Runtime.coerce_to_string(other_rval);
+
+            const self_data = self.get_data<string>();
+            const other_data = other_rval.get_data<string>();
             let index = index_rval.get_data<number>();
-            if (index < 0 ) index = self_data.length + 1 + index;
 
-            if (index > self_data.length || index < 0) {
+            if (index === -1) {
+                index = self_data.length;
+            } else if (index < 0) {
+                index ++;
+
+                if (-index > self_data.length) {
+                    throw new IndexError(`index ${index} out of string`);
+                }
+
+                index += self_data.length;
+            }
+
+            if (index > self_data.length) {
                 throw new IndexError(`index ${index} out of string`);
             }
 
             await RubyObject.check_frozen(self);
 
-            if (index == 0) {
-                self.data = other_data + self_data;
-            } else if (index === self_data.length) {
-                await append_to(self, other);
-            } else {
-                const left = self_data.substring(0, index);
-                const right = self_data.substring(index);
-                self.data = left + other_data + right;
-            }
+            const left = self_data.substring(0, index);
+            const right = self_data.substring(index);
+            self.data = left + other_data + right;
 
             return self;
         });
