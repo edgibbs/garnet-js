@@ -1,4 +1,4 @@
-import {beforeAll, describe, expect, test} from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { TrueClass } from '../runtime';
 import { RubyArray } from "../runtime/array";
 import { Symbol } from "../runtime/symbol";

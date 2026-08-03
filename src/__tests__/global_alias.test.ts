@@ -1,4 +1,4 @@
-import {beforeAll, afterEach, describe, expect, test} from '@jest/globals';
+import { afterAll, afterEach, beforeAll, describe, expect, test } from 'vitest';
 import * as Garnet from "../garnet";
 import { evaluate } from '../test_helpers';
 import { RubyArray, Integer } from '../garnet';
