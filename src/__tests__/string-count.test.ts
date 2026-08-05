@@ -1,4 +1,4 @@
-import {beforeAll, describe, expect, test} from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import * as Garnet from "../garnet";
 import { evaluate } from '../test_helpers';
 

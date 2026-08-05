@@ -81,11 +81,11 @@ Without exception, anything you can do with the regular 'ol `ruby` executable yo
 
 ### Running tests
 
-Garnet comes with two test suites: a Jest-powered one for sanity checking, and the massive ruby/spec test suite that all Ruby implementations test against. The repository contains copies of both ruby/spec and ruby/mspec, Ruby's simple test runner.
+Garnet comes with two test suites: a Vitest-powered one for sanity checking, and the massive ruby/spec test suite that all Ruby implementations test against. The repository contains copies of both ruby/spec and ruby/mspec, Ruby's simple test runner.
 
-#### Jest tests
+#### Vitest tests
 
-Run the Jest tests by executing:
+Run the Vitest tests by executing:
 
 ```bash
 npm run test
