@@ -1,4 +1,4 @@
-import {beforeAll, describe, expect, test} from '@jest/globals';
+import {beforeAll, afterAll, describe, expect, test} from 'vitest';
 import * as Garnet from "../garnet";
 import { evaluate } from '../test_helpers';
 import { FrozenError, IndexError, TypeError as RubyTypeError } from '../errors';
